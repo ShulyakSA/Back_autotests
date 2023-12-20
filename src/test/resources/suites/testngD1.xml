@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="D1 Тестирование API: работа с БД">
+    <test name="Create post">
+        <classes>
+            <class name="tests.CreatePostTest"/>
+        </classes>
+    </test>
+    <test name="Update post">
+        <classes>
+            <class name="tests.UpdatePostTest"/>
+        </classes>
+    </test>
+    <test name="Delete post">
+        <classes>
+            <class name="tests.DeletePostTest"/>
+        </classes>
+    </test>
+    <test name="Create comment">
+        <classes>
+            <class name="tests.CreateCommentTest"/>
+        </classes>
+    </test>
+    <test name="Update comment">
+        <classes>
+            <class name="tests.UpdateCommentTest"/>
+        </classes>
+    </test>
+    <test name="Delete comment">
+        <classes>
+            <class name="tests.DeleteCommentTest"/>
+        </classes>
+    </test>
+</suite>
