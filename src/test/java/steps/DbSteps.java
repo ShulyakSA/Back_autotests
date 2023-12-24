@@ -26,7 +26,6 @@ public class DbSteps {
                 posts.setExcerpt(result.getString("post_excerpt"));
                 posts.setStatus(result.getString("post_status"));
             }
-            connection.close();
             result.close();
         } catch (SQLException e) {
             log.error("SQL ERROR. QUERY WAS NOT COMPLETED -> " + query);
@@ -47,7 +46,6 @@ public class DbSteps {
                 comments.setCommentContent(result.getString("comment_content"));
                 comments.setCommentApproved(result.getString("comment_approved"));
             }
-            connection.close();
             result.close();
         } catch (SQLException e) {
             log.error("SQL ERROR. QUERY WAS NOT COMPLETED -> " + query);
