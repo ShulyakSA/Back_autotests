@@ -13,12 +13,7 @@ public class ApiSteps {
 
     @Step("Выполнить POST запрос '/posts'.  Получен ответ c кодом ответа 201 с телом в формате JSON")
     public ResponsePostsModel createPost(RequestSpecification requestSpecification) {
-        RequestPostsModel requestModel = RequestPostsModel.builder()
-                .status(conf.getTestConfigPosts().getStatusCreate())
-                .title(conf.getTestConfigPosts().getTitleCreate())
-                .content(conf.getTestConfigPosts().getContentCreate())
-                .excerpt(conf.getTestConfigPosts().getExcerptCreate())
-                .build();
+        RequestPostsModel requestModel = RequestPostsModel.builder().build();
         return requestSpecification
                 .body(requestModel)
                 .when()
@@ -60,13 +55,7 @@ public class ApiSteps {
 
     @Step("Выполнить POST запрос '/comments'.  Получен ответ c кодом ответа 201 с телом в формате JSON")
     public ResponseCommentsModel createComment(RequestSpecification requestSpecification, int postId) {
-        RequestCommentsModel requestModel = RequestCommentsModel.builder()
-                .post(postId)
-                .author(conf.getTestConfigComments().getAuthor())
-                .authorName(conf.getTestConfigComments().getAuthorNameCreate())
-                .content(conf.getTestConfigComments().getContentCreate())
-                .status(conf.getTestConfigComments().getStatusCreate())
-                .build();
+        RequestCommentsModel requestModel = RequestCommentsModel.builder().post(postId).build();
         return requestSpecification
                 .body(requestModel)
                 .when()
@@ -80,7 +69,6 @@ public class ApiSteps {
     @Step("Выполнить POST запрос '/comments'.  Получен ответ c кодом ответа 200 с телом в формате JSON")
     public ResponseCommentsModel updateComment(RequestSpecification requestSpecification, int commentId) {
         RequestCommentsModel requestModel = RequestCommentsModel.builder()
-                .author(conf.getTestConfigComments().getAuthor())
                 .authorName(conf.getTestConfigComments().getAuthorNameUpdate())
                 .content(conf.getTestConfigComments().getContentUpdate())
                 .status(conf.getTestConfigComments().getStatusUpdate())

@@ -20,7 +20,7 @@ public class UpdatePostTest extends BaseTest {
 
     @BeforeTest
     public void precondition() {
-        ResponsePostsModel response = apiSteps.createPost(requestSpecification);
+        ResponsePostsModel response = apiSteps.createPost(getRequestSpecification());
         postId = response.getId();
     }
 
@@ -28,7 +28,7 @@ public class UpdatePostTest extends BaseTest {
     @Severity(CRITICAL)
     @Test(description = "Обновление поста, с проверкой тэгов 'status', 'title', 'content', 'excerpt'")
     public void createPosTest() {
-        ResponsePostsModel response = apiSteps.updatePost(requestSpecification, postId);
+        ResponsePostsModel response = apiSteps.updatePost(getRequestSpecification(), postId);
         SoftAssert softAssertApi = new SoftAssert();
         softAssertApi.assertEquals(response.getStatus(), conf.getTestConfigPosts().getStatusUpdate());
         softAssertApi.assertEquals(response.getTitle().getRaw(), conf.getTestConfigPosts().getTitleUpdate());

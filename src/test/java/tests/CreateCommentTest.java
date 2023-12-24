@@ -18,16 +18,16 @@ public class CreateCommentTest extends BaseTest {
 
     @BeforeTest
     public void precondition() {
-        ResponsePostsModel response = apiSteps.createPost(requestSpecification);
+        ResponsePostsModel response = apiSteps.createPost(getRequestSpecification());
         postId = response.getId();
-        apiSteps.updatePost(requestSpecification, postId);
+        apiSteps.updatePost(getRequestSpecification(), postId);
     }
 
     @Story(value = "Добавление комментария с проверкой в БД")
     @Severity(CRITICAL)
     @Test(description = "Добавление комментария, с проверкой тэгов 'status', 'author_name', 'content'")
     public void createCommentTest() {
-        ResponseCommentsModel response = apiSteps.createComment(requestSpecification, postId);
+        ResponseCommentsModel response = apiSteps.createComment(getRequestSpecification(), postId);
         int commentId = response.getId();
         SoftAssert softAssertApi = new SoftAssert();
         softAssertApi.assertEquals(response.getAuthorName(), conf.getTestConfigComments().getAuthorNameCreate());

@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class TestConfigComments {
-    private String author;
     private String authorNameCreate;
     private String contentCreate;
     private String statusCreate;

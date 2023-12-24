@@ -18,7 +18,7 @@ public class DbUtils {
                     conf.getDbConfig().getDbUsername(),
                     conf.getDbConfig().getDbPassword());
         } catch (SQLException e) {
-            log.error("CONNECTION IS NOT SET -> "+conf.getDbConfig().getDbUrl());
+            log.error("CONNECTION IS NOT SET -> " + conf.getDbConfig().getDbUrl());
             e.printStackTrace();
         }
         return connection;

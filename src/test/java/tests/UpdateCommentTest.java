@@ -22,10 +22,10 @@ public class UpdateCommentTest extends BaseTest {
 
     @BeforeTest
     public void precondition() {
-        ResponsePostsModel postResponse = apiSteps.createPost(requestSpecification);
+        ResponsePostsModel postResponse = apiSteps.createPost(getRequestSpecification());
         postId = postResponse.getId();
-        apiSteps.updatePost(requestSpecification, postId);
-        ResponseCommentsModel commentResponse = apiSteps.createComment(requestSpecification, postId);
+        apiSteps.updatePost(getRequestSpecification(), postId);
+        ResponseCommentsModel commentResponse = apiSteps.createComment(getRequestSpecification(), postId);
         commentId = commentResponse.getId();
     }
 
@@ -33,7 +33,7 @@ public class UpdateCommentTest extends BaseTest {
     @Severity(CRITICAL)
     @Test(description = "Обновление комментария, с проверкой тэгов 'status', 'author_name', 'content'")
     public void updateCommentTest() {
-        ResponseCommentsModel response = apiSteps.updateComment(requestSpecification, commentId);
+        ResponseCommentsModel response = apiSteps.updateComment(getRequestSpecification(), commentId);
         SoftAssert softAssertApi = new SoftAssert();
         softAssertApi.assertEquals(response.getAuthorName(), conf.getTestConfigComments().getAuthorNameUpdate());
         softAssertApi.assertEquals(response.getContent().getRaw(), conf.getTestConfigComments().getContentUpdate());

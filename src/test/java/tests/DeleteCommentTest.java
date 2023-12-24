@@ -22,10 +22,10 @@ public class DeleteCommentTest extends BaseTest {
 
     @BeforeTest
     public void precondition() {
-        ResponsePostsModel postResponse = apiSteps.createPost(requestSpecification);
+        ResponsePostsModel postResponse = apiSteps.createPost(getRequestSpecification());
         postId = postResponse.getId();
-        apiSteps.updatePost(requestSpecification, postId);
-        ResponseCommentsModel commentResponse = apiSteps.createComment(requestSpecification, postId);
+        apiSteps.updatePost(getRequestSpecification(), postId);
+        ResponseCommentsModel commentResponse = apiSteps.createComment(getRequestSpecification(), postId);
         commentId = commentResponse.getId();
     }
 
@@ -33,7 +33,7 @@ public class DeleteCommentTest extends BaseTest {
     @Severity(CRITICAL)
     @Test(description = "Удаление комментария, с проверкой тэгов 'status', 'author_name', 'content'")
     public void createCommentTest() {
-        ResponseCommentsModel response = apiSteps.deleteComment(requestSpecification, commentId);
+        ResponseCommentsModel response = apiSteps.deleteComment(getRequestSpecification(), commentId);
         Assert.assertEquals(response.getStatus(), conf.getTestConfigComments().getStatusDelete());
         Comments comment = dbSteps.getComment(Sql.selectCommentById(commentId));
         Assert.assertEquals(comment.getCommentApproved(), conf.getTestConfigComments().getStatusDelete());

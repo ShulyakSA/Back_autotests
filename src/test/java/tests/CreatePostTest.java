@@ -19,7 +19,7 @@ public class CreatePostTest extends BaseTest {
     @Severity(CRITICAL)
     @Test(description = "Создания поста, с проверкой тэгов 'status', 'title', 'content', 'excerpt'")
     public void createPosTest() {
-        ResponsePostsModel response = apiSteps.createPost(requestSpecification);
+        ResponsePostsModel response = apiSteps.createPost(getRequestSpecification());
         SoftAssert softAssertApi = new SoftAssert();
         int postId = response.getId();
         softAssertApi.assertEquals(response.getStatus(), conf.getTestConfigPosts().getStatusCreate());

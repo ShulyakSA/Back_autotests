@@ -20,7 +20,7 @@ public class DeletePostTest extends BaseTest {
 
     @BeforeTest
     public void precondition() {
-        ResponsePostsModel response = apiSteps.createPost(requestSpecification);
+        ResponsePostsModel response = apiSteps.createPost(getRequestSpecification());
         postId = response.getId();
     }
 
@@ -28,7 +28,7 @@ public class DeletePostTest extends BaseTest {
     @Severity(CRITICAL)
     @Test(description = "Удаление поста, с проверкой тэга 'status'")
     public void createPosTest() {
-        ResponsePostsModel response = apiSteps.deletePost(requestSpecification, postId);
+        ResponsePostsModel response = apiSteps.deletePost(getRequestSpecification(), postId);
         Assert.assertEquals(response.getStatus(), conf.getTestConfigPosts().getStatusDelete());
         Posts posts = dbSteps.getPost(Sql.selectPostById(postId));
         Assert.assertEquals(posts.getStatus(), conf.getTestConfigPosts().getStatusDelete());

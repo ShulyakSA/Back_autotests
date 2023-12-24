@@ -4,6 +4,7 @@ package models;
  */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import config.TestConfigFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RequestPostsModel {
-    private String status;
-    private String title;
-    private String content;
-    private String excerpt;
+    protected static TestConfigFactory conf = TestConfigFactory.getInstance();
+
+    @Builder.Default
+    private String status = conf.getTestConfigPosts().getStatusCreate();
+    @Builder.Default
+    private String title = conf.getTestConfigPosts().getTitleCreate();
+    @Builder.Default
+    private String content = conf.getTestConfigPosts().getContentCreate();
+    @Builder.Default
+    private String excerpt = conf.getTestConfigPosts().getExcerptCreate();
 }
