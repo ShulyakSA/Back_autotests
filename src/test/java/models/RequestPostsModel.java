@@ -1,6 +1,6 @@
 package models;
 /**
- * Модель ответа схемы posts
+ * Модель запроса схемы posts
  */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

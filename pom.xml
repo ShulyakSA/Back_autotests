@@ -26,7 +26,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suiteXmlFile>src/test/resources/suites/testngD1.xml</suiteXmlFile>
+                <suiteXmlFile>src/test/resources/suites/testng.xml</suiteXmlFile>
             </properties>
         </profile>
     </profiles>

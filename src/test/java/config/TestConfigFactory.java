@@ -12,6 +12,7 @@ public class TestConfigFactory {
     private volatile DbConfig dbConfig;
     private volatile TestConfigPosts testConfigPosts;
     private volatile TestConfigComments testConfigComments;
+    private volatile TestConfigErrors testConfigErrors;
 
 
     private TestConfigFactory() {
@@ -46,6 +47,13 @@ public class TestConfigFactory {
             testConfigComments = ConfigBeanFactory.create(config.getConfig("testDataComments"), TestConfigComments.class);
         }
         return testConfigComments;
+    }
+
+    public synchronized TestConfigErrors getTestConfigErrors() {
+        if (testConfigErrors == null) {
+            testConfigErrors = ConfigBeanFactory.create(config.getConfig("testDataErrors"), TestConfigErrors.class);
+        }
+        return testConfigErrors;
     }
 
     public static synchronized TestConfigFactory getInstance() {

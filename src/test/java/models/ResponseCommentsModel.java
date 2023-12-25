@@ -1,6 +1,6 @@
 package models;
 /**
- * Модель ответа схемы comment
+ * Модель ответа схемы comments
  */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

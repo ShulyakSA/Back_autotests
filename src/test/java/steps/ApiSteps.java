@@ -1,10 +1,7 @@
 package steps;
 
 import config.TestConfigFactory;
-import models.RequestCommentsModel;
-import models.RequestPostsModel;
-import models.ResponseCommentsModel;
-import models.ResponsePostsModel;
+import models.*;
 import io.qameta.allure.Step;
 import io.restassured.specification.RequestSpecification;
 
@@ -53,6 +50,28 @@ public class ApiSteps {
                 .body().as(ResponsePostsModel.class);
     }
 
+    @Step("Выполнить GET запрос '/posts/{id}'.  Получен ответ c кодом ответа 200 с телом в формате JSON")
+    public ResponsePostsModel getPost(RequestSpecification requestSpecification, int id) {
+        return requestSpecification
+                .when()
+                .get(conf.getWebConfig().getPostsPath() + "/" + id)
+                .then()
+                .statusCode(200)
+                .extract()
+                .body().as(ResponsePostsModel.class);
+    }
+
+    @Step("Выполнить GET запрос '/posts/{id}'.  Получен ответ c кодом ответа 404 с телом в формате JSON")
+    public ResponseErrorModel getPostError(RequestSpecification requestSpecification, int id) {
+        return requestSpecification
+                .when()
+                .get(conf.getWebConfig().getPostsPath() + "/" + id)
+                .then()
+                .statusCode(404)
+                .extract()
+                .body().as(ResponseErrorModel.class);
+    }
+
     @Step("Выполнить POST запрос '/comments'.  Получен ответ c кодом ответа 201 с телом в формате JSON")
     public ResponseCommentsModel createComment(RequestSpecification requestSpecification, int postId) {
         RequestCommentsModel requestModel = RequestCommentsModel.builder().post(postId).build();
@@ -92,5 +111,27 @@ public class ApiSteps {
                 .statusCode(200)
                 .extract()
                 .body().as(ResponseCommentsModel.class);
+    }
+
+    @Step("Выполнить GET запрос '/comments/{commentId}'.  Получен ответ c кодом ответа 200 с телом в формате JSON")
+    public ResponseCommentsModel getComment(RequestSpecification requestSpecification, int commentId) {
+        return requestSpecification
+                .when()
+                .get(conf.getWebConfig().getCommentPath() + "/" + commentId)
+                .then()
+                .statusCode(200)
+                .extract()
+                .body().as(ResponseCommentsModel.class);
+    }
+
+    @Step("Выполнить GET запрос '/comments/{commentId}'.  Получен ответ c кодом ответа 404 с телом в формате JSON")
+    public ResponseErrorModel getCommentError(RequestSpecification requestSpecification, int commentId) {
+        return requestSpecification
+                .when()
+                .get(conf.getWebConfig().getCommentPath() + "/" + commentId)
+                .then()
+                .statusCode(404)
+                .extract()
+                .body().as(ResponseErrorModel.class);
     }
 }
