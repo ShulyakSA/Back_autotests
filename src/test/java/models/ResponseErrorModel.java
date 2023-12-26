@@ -1,6 +1,6 @@
 package models;
 /**
- * Модель ответа схемы posts
+ * Модель ответа с ошибкой
  */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -14,10 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponsePostsModel {
-    private int id;
-    private String status;
-    private ObjectModel title;
-    private ObjectModel content;
-    private ObjectModel excerpt;
+public class ResponseErrorModel {
+    private String code;
+    private String message;
 }
